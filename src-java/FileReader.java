@@ -8,7 +8,7 @@ import java.util.Scanner;
  */
 public class FileReader {
 
-    public static LyricSet getLyricSet(String fileName) throws FileNotFoundException {
+    public static LinkedList<String> getLyricSet(String fileName) throws FileNotFoundException {
 
         LinkedList<String> lyrics = new LinkedList<String>();
         Scanner sc = new Scanner(new File(fileName));
@@ -16,7 +16,18 @@ public class FileReader {
             lyrics.add(sc.nextLine());
         }
 
-        return LyricSet.parseLyrics(lyrics);
+        return lyrics;
+
+    }
+
+    public static String[] drawLyricPair(String lyricSource) throws FileNotFoundException {
+
+        LinkedList<String> lyrics = getLyricSet(lyricSource);
+        String[] results = new String[2];
+        int line2 = (int)(Math.random() * (lyrics.size()));
+        results[0] = lyrics.get(line2 - 1);
+        results[1] = lyrics.get(line2);
+        return results;
 
     }
 
